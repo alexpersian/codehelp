@@ -25,7 +25,8 @@
             <div class="well well-sm">
                 <form class="form-horizontal" method="post">
                     <fieldset>
-                        <legend class="text-center header">Personal CodeHelp</legend>
+                        <legend class="text-center header">Welcome to CodeHelp!</legend>
+                        <legend class="text-center">What can we help you with?</legend>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                             <div class="col-md-6">
