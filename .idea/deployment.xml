@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="sftp.stevehenningsgard.com" />
+  <component name="PublishConfigData" serverName="sftp.stevehenningsgard.com" uploadOnCheckin="2d26c4ed-e6f7-4cbb-8f2a-b2dd6d115386">
+    <option name="myUploadOnCheckinName" value="sftp.stevehenningsgard.com" />
+  </component>
 </project>
