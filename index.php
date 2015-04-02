@@ -36,37 +36,37 @@
     <div class="row">
         <div class="col-md-12">
             <div class="well well-sm">
-                <form class="form-horizontal" method="post">
+                <form class="form-horizontal" method="post" action="submit.php">
                     <fieldset>
-                        <legend class="text-center header">Hi, we're CodeHelp!</legend>
+                        <legend class="text-center header">Welcome to CodeHelp</legend>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                             <div class="col-md-6">
-                                <input id="name" name="name" type="text" placeholder="Name" class="form-control" required>
+                                <input id="name" name="name" type="text" placeholder="What's your name?" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
                             <div class="col-md-6">
-                                <input id="email" name="email" type="text" placeholder="Email Address" class="form-control" required>
+                                <input id="email" name="email" type="text" placeholder="What's your email address?" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i></span>
                             <div class="col-md-6">
-                                <input id="subject" name="subject" type="text" placeholder="Class/Subject (ex. 'CSCI201')" class="form-control" required>
+                                <input id="subject" name="subject" type="text" placeholder="What course do you need help with?" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
                             <div class="col-md-6">
-                                <textarea class="form-control" id="description" name="description" placeholder="What can we help you with? We'll get back to you asap!" rows="7" required></textarea>
+                                <textarea class="form-control" id="message" name="message" placeholder="What can we help you with?" rows="7" required></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <!-- button for submission -->
-                                <button type="submit" class="btn btn-danger btn-block">Send Request</button>
+                                <button type="submit" class="btn btn-danger btn-block">Please Help!</button>
                             </div>
                         </div>
                     </fieldset>

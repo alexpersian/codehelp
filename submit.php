@@ -16,7 +16,7 @@
         $headers[] = "From:". $name . "<admin@codehelp.scsugroups.com>";
         $headers[] = "Reply-To: " . $name . "<" . $email . ">";
         $headers[] = "From: admin@codehelp.scsugroups.com";
-        $headers[] = "Subject: " . $subject;
+        $headers[] = "Subject: " . "CodeHelp::" . $subject;
         $headers[] = "X-Mailer: PHP/" . phpversion();
 
         mail(
