@@ -1,5 +1,5 @@
 <?php
-    $name = $email = $subject = $description = "";
+    $name = $email = $subject = $message = "";
 
     if ( isset($_POST['email']) ) {
 
@@ -62,7 +62,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <div class="well well-sm">
                 <form class="form-horizontal" method="post">
                     <fieldset>
@@ -85,7 +85,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-2">
-                                <textarea class="form-control" id="description" name="description" placeholder="Describe the problem you are encountering. We will get back to you within 2 hours." rows="7" value="<?php echo $message ?>" readonly></textarea>
+                                <textarea class="form-control" id="description" name="description" placeholder="Describe the problem you are encountering. We will get back to you within 2 hours." rows="7" readonly><?php echo $message ?></textarea>
                             </div>
                         </div>
                     </fieldset>
