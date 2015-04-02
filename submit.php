@@ -34,7 +34,7 @@
         );
 
     } else {
-        echo "Oops! We need your email!";
+        $errortext = "Oops! Something went wrong...";
     }
 
     function clean_input($data) {
@@ -67,7 +67,7 @@
                 <form class="form-horizontal" method="post">
                     <fieldset>
                         <legend class="text-center header">Thank you for using CodeHelp :)</legend>
-                        <h3 class="text-center ">Here's what you sent us.</h3>
+                        <h3 class="text-center ">Here's what you sent us...</h3>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-2">
                                 <input id="name" name="name" type="text" placeholder="Name" class="form-control" value="<?php echo $name ?>" readonly>
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <h3 class="text-center">We will contact you shortly.</h3>
+                    <h3 class="text-center">We will contact you shortly!</h3>
                 </form>
             </div>
         </div>
