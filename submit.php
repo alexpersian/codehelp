@@ -57,12 +57,25 @@
             font-size: 27px;
             padding: 10px;
         }
+        body {
+            background-color: rgba(255, 255, 255, 0);
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0);
+        }
+        html {
+            background: url("img/CodeHelpBG.jpg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="well well-sm">
                 <form class="form-horizontal" method="post">
                     <fieldset>
