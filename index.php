@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
+        body {
+            background-color: rgba(255, 255, 255, 0);
+        }
+        .container {
+             background-color: rgba(255, 255, 255, 0);
+         }
+        html {
+            background: url("img/CodeHelpBG.jpg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
         .header {
             color: #c10b12;
             font-size: 27px;
@@ -25,7 +38,7 @@
             <div class="well well-sm">
                 <form class="form-horizontal" method="post">
                     <fieldset>
-                        <legend class="text-center header">Welcome to CodeHelp!</legend>
+                        <legend class="text-center header">Hi, we're CodeHelp!</legend>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                             <div class="col-md-6">
