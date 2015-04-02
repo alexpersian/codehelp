@@ -26,7 +26,6 @@
                 <form class="form-horizontal" method="post">
                     <fieldset>
                         <legend class="text-center header">Welcome to CodeHelp!</legend>
-                        <legend class="text-center">What can we help you with?</legend>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                             <div class="col-md-6">
@@ -42,13 +41,13 @@
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i></span>
                             <div class="col-md-6">
-                                <input id="subject" name="subject" type="text" placeholder="Class Subject" class="form-control">
+                                <input id="subject" name="subject" type="text" placeholder="Class/Subject (ex. 'CSCI201')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
                             <div class="col-md-6">
-                                <textarea class="form-control" id="description" name="description" placeholder="Describe the problem you are encountering. We will get back to you within 2 hours." rows="7"></textarea>
+                                <textarea class="form-control" id="description" name="description" placeholder="What can we help you with? We'll get back to you asap!" rows="7"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
