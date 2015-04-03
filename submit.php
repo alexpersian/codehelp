@@ -85,11 +85,11 @@
                                 if ($errortext != "") {
                                     echo $errortext;
                                 } else {
-                                    echo "Thank you for using CodeHelp :)";
+                                    echo "Success!";
                                 }
                             ?>
                         </legend>
-                        <h3 class="text-center ">Here's what you sent us...</h3>
+                        <h3 class="text-left">Here's what you sent us...</h3>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-2">
                                 <input id="name" name="name" type="text" placeholder="Name" class="form-control" value="<?php echo $name ?>" readonly>
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <h3 class="text-center">We will contact you shortly!</h3>
+                    <h3 class="text-right">...We'll contact you shortly!</h3>
                 </form>
             </div>
         </div>
