@@ -125,6 +125,9 @@ var exampleResponse = {
 
 
 var SE = (function($) {
+
+    var module = {};
+
     /**
      * Sends AJAX request to StackExchange
      * @param config {searchString, site, tags ("tag1;tag2;etc"), filters(same)}
@@ -168,15 +171,7 @@ var SE = (function($) {
         }
     }
 
-    /*
+    module.get = sendRequest;
 
-    */
-
-    SE.get = sendRequest;
+    return module;
 }(jQuery));
-
-
-
-$(document).ready(function() {
-
-});
