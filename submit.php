@@ -1,5 +1,6 @@
 <?php
     $name = $email = $subject = $message = $errortext = "";
+    $success = false;
 
     if ( isset($_POST['email']) ) {
 
@@ -11,16 +12,16 @@
         $headers = array();
 
 
-        $headers[] = "MIME-Version: 1.0";
-        $headers[] = "Content-type: text/plain; charset=iso-8859-1";
+        //$headers[] = "MIME-Version: 1.0";
+        //$headers[] = "Content-type: text/plain; charset=iso-8859-1";
         $headers[] = "From:". $name . "<admin@codehelp.scsugroups.com>";
         $headers[] = "Reply-To: " . $name . "<" . $email . ">";
-        $headers[] = "From: admin@codehelp.scsugroups.com";
+        $headers[] = "From: " . $email;
         $headers[] = "Subject: " . "CodeHelp::" . $subject;
         $headers[] = "X-Mailer: PHP/" . phpversion();
 
-        mail(
-            "apersian@stcloudstate.edu",
+        $success = mail(
+            "nerd@codehelp.scsugroups.com",
             "CodeHelp::" . $subject,
             $message,
             implode("\r\n", $headers)
