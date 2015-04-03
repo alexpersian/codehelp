@@ -72,7 +72,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="well well-sm">
-                <form class="form-horizontal" method="post">
+                <form class="form-horizontal">
                     <fieldset>
                         <legend class="text-center header">
                             <?php
@@ -85,21 +85,25 @@
                         </legend>
                         <h3 class="text-center">Here's what you sent us...</h3>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Name:</label>
                             <div class="col-md-8 col-md-offset-2">
-                                <input id="name" name="name" type="text" placeholder="Name" class="form-control" value="<?php echo $name ?>" readonly>
+                                <p class="form-control-static"><?php echo $name ?></p>
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Email:</label>
                             <div class="col-md-8 col-md-offset-2">
-                                <input id="email" name="email" type="text" placeholder="Email Address" class="form-control" value="<?php echo $email ?>" readonly>
+                                <p class="form-control-static"><?php echo $email ?></p>
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Class:</label>
                             <div class="col-md-8 col-md-offset-2">
-                                <input id="subject" name="subject" type="text" placeholder="Class Subject" class="form-control" value="<?php echo $subject ?>" readonly>
+                                <p class="form-control-static"><?php echo $subject ?></p>
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Message:</label>
                             <div class="col-md-8 col-md-offset-2">
                                 <textarea class="form-control" id="description" name="description" placeholder="Describe the problem you are encountering. We will get back to you within 2 hours." rows="7" readonly><?php echo $message ?></textarea>
                             </div>
