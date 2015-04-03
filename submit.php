@@ -38,12 +38,12 @@
 
         //send the email!
         $success = true;
-        /*mail(
+        mail(
             $to,
             $subject,
             implode("\r\n", $body), //append line breaks
             implode("\r\n", $headers) //append line breaks
-        );*/
+        );
 
     } else {
         $error_text = "Oops! Something went wrong...";
