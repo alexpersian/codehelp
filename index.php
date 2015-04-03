@@ -14,7 +14,7 @@
              background-color: rgba(255, 255, 255, 0);
          }
         html {
-            background: url("img/CodeHelpBG.jpg") no-repeat center center fixed;
+            background: url("img/CodeHelpBG2.jpg") no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
