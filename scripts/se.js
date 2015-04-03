@@ -143,12 +143,15 @@ var SE = (function($) {
     function sendRequest(config, callback) {
         var req = new XMLHttpRequest();
 
+        var KEY = "JoyuTTl9LLyttWQdC*HG)A((";
+
         var searchString = encodeURIComponent( (config.searchString || "") );
         var site = config.site || "stackoverflow";
         var tags = encodeURIComponent(config.tags || "");
         var filters = encodeURIComponent(config.filters || "withbody");
 
-        var options = "pagesize=5&order=desc&sort=relevance&q=" + searchString + "&tagged=" + tags + "&site=" + site + "&filter=" + filters;
+
+        var options = "key=" + KEY + "&pagesize=5&order=desc&sort=relevance&q=" + searchString + "&tagged=" + tags + "&site=" + site + "&filter=" + filters;
 
         var url = "https://api.stackexchange.com/2.2/search/advanced?" + options;
 

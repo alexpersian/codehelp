@@ -37,12 +37,13 @@
         $body[] = "</tr></table>";
 
         //send the email!
-        $success = mail(
+        $success = true;
+        /*mail(
             $to,
             $subject,
             implode("\r\n", $body), //append line breaks
             implode("\r\n", $headers) //append line breaks
-        );
+        );*/
 
     } else {
         $error_text = "Oops! Something went wrong...";
@@ -145,7 +146,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="scripts/stackex.js"></script>
+<script src="scripts/se.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         var content = $("#main-content");
@@ -156,6 +157,8 @@
         };
 
         SE.get(config, printResponse);
+        console.log(<?php echo "\"" . urlencode($message) . "\"" ?>);
+        console.log(<?php echo "\"" . urlencode($language) . "\"" ?>);
 
         function printResponse(resp) {
             if (resp.items) {
