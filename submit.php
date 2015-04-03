@@ -1,5 +1,6 @@
 <?php
-    $name = $email = $subject = $message = $errortext = "";
+    $name = $email = $subject = $message = $errortext = $language = "";
+
     $success = false;
 
     if ( isset($_POST['email']) ) {
@@ -9,6 +10,7 @@
         $email = clean_input( $_POST['email'] );
         $subject = clean_input( $_POST['subject'] );
         $message = clean_input( $_POST['message'] );
+        $language = clean_input( $_POST['language'] );
         $headers = array();
 
 
@@ -17,12 +19,12 @@
         $headers[] = "From:". $name . "<admin@codehelp.scsugroups.com>";
         $headers[] = "Reply-To: " . $name . "<" . $email . ">";
         $headers[] = "From: " . $email;
-        $headers[] = "Subject: " . "CodeHelp::" . $subject;
+        $headers[] = "Subject: " . "CodeHelp::" . $subject . "(" . $language . ")";
         $headers[] = "X-Mailer: PHP/" . phpversion();
 
         $success = mail(
             "nerd@codehelp.scsugroups.com",
-            "CodeHelp::" . $subject,
+            "CodeHelp::" . $subject . "(" . $language . ")",
             $message,
             implode("\r\n", $headers)
         );
@@ -32,7 +34,9 @@
     }
 
     function clean_input($data) {
-        //return htmlspecialchars( stripslashes( trim($data) ) );
+        $data = trim( $data );
+        $data = stripslashes( $data );
+        $data = htmlspecialchars( $data );
         return $data;
     }
 
@@ -103,9 +107,15 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Language:</label>
+                            <div class="col-md-8 col-md-offset-2">
+                                <p class="form-control-static"><?php echo $language ?></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-2 control-label">Message:</label>
                             <div class="col-md-8 col-md-offset-2">
-                                <textarea class="form-control" id="description" name="description" placeholder="Describe the problem you are encountering. We will get back to you within 2 hours." rows="7" readonly><?php echo $message ?></textarea>
+                                <p class="form-control-static"><?php echo $message ?></p>
                             </div>
                         </div>
                     </fieldset>
@@ -118,5 +128,5 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </html>
