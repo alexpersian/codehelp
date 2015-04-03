@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CodeHelp</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
         body {
             background-color: rgba(255, 255, 255, 0);
@@ -46,24 +46,46 @@
                         <legend class="text-center header">Welcome to CodeHelp<br /><small class="subheading">Made by SCSU students, for SCSU students.</small></legend>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                            <label for="name" class="col-sm-2 control-label">Name:</label>
                             <div class="col-md-6">
                                 <input id="name" name="name" type="text" placeholder="What's your name?" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
+                            <label for="email" class="col-sm-2 control-label">Email:</label>
                             <div class="col-md-6">
                                 <input id="email" name="email" type="text" placeholder="What's your email address?" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i></span>
+                            <label for="subject" class="col-sm-2 control-label">Class/Subject:</label>
                             <div class="col-md-6">
                                 <input id="subject" name="subject" type="text" placeholder="What course do you need help with?" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-code bigicon"></i></span>
+                            <label for="language" class="col-sm-2 control-label">Language:</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="language">
+                                    <option>C/C++</option>
+                                    <option>C#</option>
+                                    <option>HTML/CSS</option>
+                                    <option>Java</option>
+                                    <option>JavaScript/JSON</option>
+                                    <option>PHP</option>
+                                    <option>Python</option>
+                                    <option>Ruby</option>
+                                    <option>SQL</option>
+                                    <option>(other)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            <label for="message" class="col-sm-2 control-label">Message:</label>
                             <div class="col-md-6">
                                 <textarea class="form-control" id="message" name="message" placeholder="What can we help you with?" rows="7" required></textarea>
                             </div>
