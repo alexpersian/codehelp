@@ -38,12 +38,12 @@
 
         //send the email!
         $success = true;
-        /*mail(
+        mail(
             $to,
             $subject,
             implode("\r\n", $body), //append line breaks
             implode("\r\n", $headers) //append line breaks
-        );*/
+        );
 
     } else {
         $error_text = "Oops! Something went wrong...";
@@ -66,30 +66,7 @@
     <title>CodeHelp - <?php echo ($success == true) ? "Sent!" : "Fail..." ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <style>
-        .header {
-            color: #c10b12;
-            font-size: 27px;
-            padding: 10px;
-        }
-        body {
-            background-color: rgba(255, 255, 255, 0);
-        }
-        .container {
-            background-color: rgba(255, 255, 255, 0);
-        }
-        html {
-            background: #fff no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-        .media {
-            font-size: 10pt;
-        }
-
-    </style>
+    <link rel="stylesheet" href="style/style.css">
     </head>
 <body>
 <div class="container">

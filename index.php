@@ -6,35 +6,7 @@
     <title>CodeHelp</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <style>
-        body {
-            background-color: rgba(255, 255, 255, 0);
-        }
-        .container {
-			padding-top: 5px;
-             background-color: rgba(255, 255, 255, 0);
-         }
-        html {
-            background: #fff no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-        .header {
-            color: #c10b12;
-            font-size: 27px;
-            padding: 10px;
-        }
-        .bigicon {
-            font-size: 35px;
-            color: #c10b12;
-        }
-        .subheading {
-            font-size: 10pt;
-            color: #000;
-        }
-    </style>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
 <div class="container">
@@ -99,10 +71,9 @@
                     </fieldset>
                 </form>
             </div>
-			<div class="text-center">
-				Created with <span class="fa fa-heart"></span> by Alex Persian and Steve Henningsgard
-			</div>
+            <?php include("templates/include/testimonials.php"); ?>
         </div>
+        <?php include("templates/include/createdby.php"); ?>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
