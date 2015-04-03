@@ -27,13 +27,6 @@
             implode("\r\n", $headers)
         );
 
-        mail(
-            "hest0401@stcloudstate.edu",
-            "CodeHelp::" . $subject,
-            $message,
-            implode("\r\n", $headers)
-        );
-
     } else {
         $errortext = "Oops! Something went wrong...";
     }
@@ -83,7 +76,7 @@
                     <fieldset>
                         <legend class="text-center header">
                             <?php
-                                if ($errortext != "") {
+                                if ($errortext != "" || $success == false) {
                                     echo $errortext;
                                 } else {
                                     echo "Success!";
