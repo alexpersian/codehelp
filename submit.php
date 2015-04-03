@@ -1,38 +1,52 @@
 <?php
-    $name = $email = $subject = $message = $errortext = $language = "";
+    $name = $email = $subject = $message = $error_text = $language = "";
 
     $success = false;
 
     if ( isset($_POST['email']) ) {
 
-
+        //get the (clean) inputs from the form
         $name = clean_input( $_POST['name'] );
         $email = clean_input( $_POST['email'] );
         $subject = clean_input( $_POST['subject'] );
         $message = clean_input( $_POST['message'] );
         $language = clean_input( $_POST['language'] );
+
+        //construct the subject
+        $subject = "Help Request! (" . $subject . "/" . $language . ")";
+
+        //who's this email going to?
+        $to = "nerd@codehelp.scsugroups.com";
+
+        //construct the headers
         $headers = array();
-
-
-        //$headers[] = "MIME-Version: 1.0";
-        //$headers[] = "Content-type: text/plain; charset=iso-8859-1";
+        $headers[] = "MIME-Version: 1.0";
+        $headers[] = "Content-type: text/plain; charset=iso-8859-1";
         $headers[] = "From:". $name . "<admin@codehelp.scsugroups.com>";
         $headers[] = "Reply-To: " . $name . "<" . $email . ">";
         $headers[] = "From: " . $email;
-        $headers[] = "Subject: " . "CodeHelp::" . $subject . "(" . $language . ")";
+        $headers[] = "Subject: " . $subject;
         $headers[] = "X-Mailer: PHP/" . phpversion();
 
+        //construct the body
+        $body = array();
+        $body[] = "Class/Subject: " . $subject;
+        $body[] = "Language: " . $language;
+        $body[] = "Message:" . $message;
+
+        //send the email!
         $success = mail(
-            "nerd@codehelp.scsugroups.com",
-            "CodeHelp::" . $subject . "(" . $language . ")",
-            $message,
-            implode("\r\n", $headers)
+            $to,
+            $subject,
+            implode("\r\n", $body), //append line breaks
+            implode("\r\n", $headers) //append line breaks
         );
 
     } else {
-        $errortext = "Oops! Something went wrong...";
+        $error_text = "Oops! Something went wrong...";
     }
 
+    //cleans a submitted form data field (basic security stuff)
     function clean_input($data) {
         $data = trim( $data );
         $data = stripslashes( $data );
@@ -46,9 +60,9 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CodeHelp</title>
+    <title>CodeHelp - <?php echo ($success == true) ? "Sent!" : "Fail..." ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
         .header {
             color: #c10b12;
@@ -80,14 +94,14 @@
                     <fieldset>
                         <legend class="text-center header">
                             <?php
-                                if ($errortext != "" || $success == false) {
-                                    echo $errortext;
+                                if ($error_text != "" || $success == false) {
+                                    echo $error_text;
                                 } else {
                                     echo "Success!";
                                 }
                             ?>
                         </legend>
-                        <h3 class="text-center">Here's what you sent us...</h3>
+                        <h3 class="text-center">Here's what you <?php echo ($error_text != "" || $success == false) ? "tried to send" : "sent" ?> us...</h3>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Name:</label>
                             <div class="col-md-8 col-md-offset-2">
@@ -119,7 +133,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <h3 class="text-center">...We'll contact you shortly!</h3>
+                    <h3 class="text-center">...We'll <?php echo ($error_text != "" || $success == false) ? "try to " : "" ?>contact you shortly!</h3>
                 </form>
             </div>
             <?php include("templates/include/createdby.php"); ?>
