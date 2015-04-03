@@ -29,6 +29,10 @@
             font-size: 35px;
             color: #c10b12;
         }
+        .subheading {
+            font-size: 10pt;
+            color: #000;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +42,7 @@
             <div class="well well-sm">
                 <form class="form-horizontal" method="post" action="submit.php">
                     <fieldset>
-                        <legend class="text-center header">Welcome to CodeHelp<br /><small>a free service for SCSU students!</small></legend>
+                        <legend class="text-center header">Welcome to CodeHelp<br /><small class="subheading">a free service for SCSU students!</small></legend>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                             <div class="col-md-6">
