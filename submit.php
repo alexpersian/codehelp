@@ -1,5 +1,5 @@
 <?php
-    $name = $email = $subject = $message = "";
+    $name = $email = $subject = $message = $errortext = "";
 
     if ( isset($_POST['email']) ) {
 
@@ -79,7 +79,15 @@
             <div class="well well-sm">
                 <form class="form-horizontal" method="post">
                     <fieldset>
-                        <legend class="text-center header">Thank you for using CodeHelp :)</legend>
+                        <legend class="text-center header">
+                            <?php
+                                if ($errortext != "") {
+                                    echo $errortext;
+                                } else {
+                                    echo "Thank you for using CodeHelp :)";
+                                }
+                            ?>
+                        </legend>
                         <h3 class="text-center ">Here's what you sent us...</h3>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-2">
