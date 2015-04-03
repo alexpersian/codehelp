@@ -21,7 +21,7 @@
         //construct the headers
         $headers = array();
         $headers[] = "MIME-Version: 1.0";
-        $headers[] = "Content-type: text/plain; charset=iso-8859-1";
+        $headers[] = "Content-type: text/html; charset=iso-8859-1";
         $headers[] = "From:". $name . "<admin@codehelp.scsugroups.com>";
         $headers[] = "Reply-To: " . $name . "<" . $email . ">";
         $headers[] = "From: " . $email;
@@ -30,9 +30,11 @@
 
         //construct the body
         $body = array();
-        $body[] = "Class/Subject: " . $subject;
-        $body[] = "Language: " . $language;
-        $body[] = "Message:" . $message;
+        $body[] = "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\">";
+        $body[] = "<tr><td width=\"80\">Class/Subject:</td><td width=\"280\">". $subject . "</td></tr>";
+        $body[] = "<tr><td width=\"80\">Language:</td><td width=\"280\">". $language . "</td></tr>";
+        $body[] = "<tr><td width=\"80\">Message:</td><td width=\"280\">". $message . "</td></tr>";
+        $body[] = "</tr></table>";
 
         //send the email!
         $success = mail(
