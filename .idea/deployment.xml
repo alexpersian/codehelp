@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="PublishConfigData" serverName="sftp.stevehenningsgard.com" uploadOnCheckin="2d26c4ed-e6f7-4cbb-8f2a-b2dd6d115386">
-    <serverData>
-      <paths name="sftp.stevehenningsgard.com">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/codehelp.scsugroups.com" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-    </serverData>
     <option name="myUploadOnCheckinName" value="sftp.stevehenningsgard.com" />
   </component>
 </project>
