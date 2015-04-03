@@ -71,6 +71,7 @@
                     </fieldset>
                 </form>
             </div>
+            <?php include("templates/include/testimonials.php"); ?>
         </div>
         <?php include("templates/include/createdby.php"); ?>
     </div>
