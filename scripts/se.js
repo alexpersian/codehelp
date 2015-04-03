@@ -117,10 +117,14 @@ var SE = (function($) {
 
     var module = {};
 
+    var DEBUG = false;
+
     function _log(msg, obj) {
-        console.log("SE::" + msg);
-        if (obj) {
-            console.log(obj);
+        if (DEBUG) {
+            console.log("SE::" + msg);
+            if (obj) {
+                console.log(obj);
+            }
         }
     }
 

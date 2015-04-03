@@ -10,54 +10,69 @@
             tags: tags
         };
 
-        //THIS IS THE CALL TO StackExchange!
-        SE.get(config, printResponse);
+        var answersFound = false;
 
+        //THIS IS THE CALL TO StackExchange!
+        SE.get(config, function(resp) {
+
+            if (resp.items && resp.items.length > 0) {
+
+                answersFound = printResponse(resp);
+
+            } else {
+                //try without tags if no results
+                //console.log("retrying SE search without tags...");
+                config.tags = "";
+
+                SE.get(config, function(resp) {
+                    if (resp.items && resp.items.length > 0) {
+
+                        answersFound = printResponse(resp);
+                    } else {
+                        //console.log("no answers found!");
+                        //give up
+                    }
+                });
+            }
+
+            if (answersFound) {
+                content.after( $("<h3 class=\"col-md-10\">").html("While you're waiting, perhaps these resources might help?") );
+            }
+
+        });
 
         //prints the response as Bootstrap media objects, after the 'main-content' div
         function printResponse(resp) {
-            if (resp.items) {
+            var answersPrinted = false;
 
+            $.each(resp.items, function(i, item) {
+                var mediaObject;
 
-                $.each(resp.items, function(i, item) {
-                    var mediaObject;
-
-                    /*
-                     var divMedia = $("<div>").addClass("media");
-                     var divMediaLeft = $("<div>").addClass("media-left");
-                     var linky = $("<a>").attr("href", item.link);
-                     var imgMedia = $("<img>").attr("src", item.owner.profile_image);
-                     var divMediaBody = $("<div>").addClass("media-body").html( (item.body).substring(0, 250) + "..." );
-                     var h4mediaHeading = $("<h4>").addClass("media-heading").html(item.title);
-                     */
-
-
-                    if (item.is_answered) {
-                        mediaObject = $("<div>").addClass("media").addClass("col-md-6").append(
-                            $("<div>").addClass("media-left").append(
-                                $("<a>").attr("href", item.link).attr("target","_blank").append(
-                                    $("<img>").attr("src", item.owner.profile_image).attr("width", "32px")
-                                )
-                            )
-                        ).append(
-                            $("<div>").addClass("media-body").html( (item.body).substring(0, 250) + "...").prepend(
-                                $("<a>").attr("href", item.link).attr("target","_blank").append(
-                                    $("<h4>").addClass("media-heading").html(item.title)
-                                )
+                if (item.is_answered) {
+                    mediaObject = $("<div>").addClass("media").addClass("col-md-6").append(
+                        $("<div>").addClass("media-left").append(
+                            $("<a>").attr("href", item.link).attr("target","_blank").append(
+                                $("<img>").attr("src", item.owner.profile_image).attr("width", "32px")
                             )
                         )
+                    ).append(
+                        $("<div>").addClass("media-body").html( (item.body).substring(0, 250) + "...").prepend(
+                            $("<a>").attr("href", item.link).attr("target","_blank").append(
+                                $("<h4>").addClass("media-heading").html(item.title)
+                            )
+                        )
+                    );
 
-                        content.after(mediaObject);
-                    } else {
-                        console.log("answer count too low", item);
-                    }
+                    content.after(mediaObject);
+                    answersPrinted = true;
+                } else {
+                    //console.log("answer count too low", item);
+                }
 
-                });
+            });
 
-                content.after( $("<h3 class=\"col-md-10\">").html("While you're waiting, perhaps these resources might help?") );
-            } else {
-                console.log(resp);
-            }
+            return answersPrinted;
+
         }
     });
 </script>
