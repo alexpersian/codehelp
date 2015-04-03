@@ -1,0 +1,26 @@
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+}
+.header {
+    color: #c10b12;
+    font-size: 27px;
+    padding: 10px;
+}
+.bigicon {
+    font-size: 35px;
+    color: #c10b12;
+}
+.testimonial {
+    font-style: italic;
+}
+.footer {
+    position: relative;
+    bottom: 0;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.heart {
+    color: #c10b12;
+}
