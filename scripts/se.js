@@ -149,7 +149,7 @@ var SE = (function($) {
 
         var searchString = encodeURIComponent( (config.searchString || "") );
         var site = config.site || "stackoverflow";
-        var tags = encodeURIComponent(config.tags || "");
+        var tags = encodeURIComponent( (typeof config.tags == "object" ? config.tags.join(";") : config.tags) || "");
         var filters = encodeURIComponent(config.filters || "withbody");
 
 
