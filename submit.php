@@ -66,7 +66,7 @@
         }
 
     </style>
-</head>
+    </head>
 <body>
 <div class="container">
     <div class="row">
@@ -108,11 +108,11 @@
                     <h3 class="text-center">...We'll contact you shortly!</h3>
                 </form>
             </div>
-			<div class="text-center">
-				Created with <span class="fa fa-heart"></span> by Alex Persian and Steve Henningsgard
-			</div>
+            <?php include("templates/include/createdby.php"); ?>
         </div>
     </div>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </html>
