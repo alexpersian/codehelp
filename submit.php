@@ -91,7 +91,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="well well-sm">
+            <div class="well well-sm" id="main-content">
                 <form class="form-horizontal">
                     <fieldset>
                         <legend class="text-center header">
@@ -145,4 +145,50 @@
 </body>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="scripts/stackexchange.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var content = $("#main-content");
+
+        var config = {
+            searchString: "",
+            tags: ""
+        };
+
+        SE.get(config, printResponse);
+
+        function printResponse(resp) {
+            if (resp.items) {
+                $.each(resp.items, function(i, item) {
+                    var mediaObject;
+
+                    if (item.is_answered) {
+                        mediaObject = "<div class=\"media\">" +
+                        "<div class=\"media-left\"" +
+                        "<a href=\"" + item.link + "\">" +
+                        "<img class=\"media-object\" src=\"" + item.owner.profile_image + "\">" +
+                        "</a>" +
+                        "</div>" +
+                        "<div class=\"media-body\">" +
+                        "<h4 class=\"media-heading\">" + item.title + "</h4>" +
+                        (item.body).substring(0,100) + "..." +
+                        "</div>" +
+                        "</div>";
+
+                        content.after(mediaObject);
+                    } else {
+                        console.log("answer count too low", item);
+                    }
+
+
+                })
+            } else {
+                console.log(resp);
+            }
+        }
+        <div class="well well-sm">
+
+        </div>
+    });
+</script>
 </html>
