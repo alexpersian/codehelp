@@ -141,6 +141,8 @@ var SE = (function($) {
      * @param callback
      */
     function sendRequest(config, callback) {
+        _log("sendRequest()", config);
+
         var req = new XMLHttpRequest();
 
         var KEY = "JoyuTTl9LLyttWQdC*HG)A((";
