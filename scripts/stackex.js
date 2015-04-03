@@ -128,6 +128,13 @@ var SE = (function($) {
 
     var module = {};
 
+    function _log(msg, obj) {
+        console.log("SE::" + msg);
+        if (obj) {
+            console.log(obj);
+        }
+    }
+
     /**
      * Sends AJAX request to StackExchange
      * @param config {searchString, site, tags ("tag1;tag2;etc"), filters(same)}
@@ -146,11 +153,12 @@ var SE = (function($) {
         var url = "https://api.stackexchange.com/2.2/search/advanced?" + options;
 
         req.onreadystatechange = function() {
+            _log("onReadyStateChange() (" + req.readyState + ")");
             if (req.readyState != 4) {
                 return; //not ready yet
             }
             if (req.status != 200) {
-                console.log("AJAX Fail!");
+                _log("AJAX Fail!");
             }
 
             var resp = JSON.parse( req.responseText );
@@ -159,12 +167,14 @@ var SE = (function($) {
         };
 
         if (searchString && tags) {
+            _log("Sending AJAX request: '" + url + "'");
             req.open("GET", url, true);
             req.send();
         } else if (typeof callback == "function") {
+            _log("ERROR: invalid arguments");
             callback({
                 'error': 'malformed request!',
-                'data': 'config'
+                'data': config
             });
         } else {
             //do nothing; stupid call

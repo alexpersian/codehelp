@@ -145,14 +145,14 @@
 </body>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="scripts/se.js"></script>
+<script src="scripts/stackex.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         var content = $("#main-content");
 
         var config = {
-            searchString: "",
-            tags: ""
+            searchString: <?php echo "\"" . $message . "\"" ?>,
+            tags: <?php echo "\"" . $language . "\"" ?>
         };
 
         SE.get(config, printResponse);
