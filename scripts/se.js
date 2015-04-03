@@ -169,7 +169,7 @@ var SE = (function($) {
             callback(resp);
         };
 
-        if (searchString && tags) {
+        if (searchString) {
             _log("Sending AJAX request: '" + url + "'");
             req.open("GET", url, true);
             req.send();

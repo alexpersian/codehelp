@@ -151,14 +151,18 @@
     $(document).ready(function() {
         var content = $("#main-content");
 
+        var searchString = <?php echo "\"" . $message . "\"" ?>;
+        var tags = ( encodeURI(<?php echo "\"" . $language . "\"" ?>).replace("/", "%3B").replace("(other)","") );
+
         var config = {
-            searchString: <?php echo "\"" . $message . "\"" ?>,
-            tags: <?php echo "\"" . $language . "\"" ?>
+            searchString: searchString,
+            tags: tags;
         };
 
         SE.get(config, printResponse);
-        console.log(<?php echo "\"" . urlencode($message) . "\"" ?>);
-        console.log(<?php echo "\"" . urlencode($language) . "\"" ?>);
+
+        console.log(searchString);
+        console.log(tags);
 
         function printResponse(resp) {
             if (resp.items) {
