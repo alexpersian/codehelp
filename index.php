@@ -11,10 +11,11 @@
             background-color: rgba(255, 255, 255, 0);
         }
         .container {
+			padding-top: 5px;
              background-color: rgba(255, 255, 255, 0);
          }
         html {
-            background: url("img/CodeHelpBG2.jpg") no-repeat center center fixed;
+            background: #fff no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -42,7 +43,7 @@
             <div class="well well-sm">
                 <form class="form-horizontal" method="post" action="submit.php">
                     <fieldset>
-                        <legend class="text-center header">Welcome to CodeHelp<br /><small class="subheading">A service for SCSU students!</small></legend>
+                        <legend class="text-center header">Welcome to CodeHelp<br /><small class="subheading">Made by SCSU students, for SCSU students.</small></legend>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                             <div class="col-md-6">
@@ -70,12 +71,15 @@
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <!-- button for submission -->
-                                <button type="submit" class="btn btn-danger btn-block">Please Help!</button>
+                                <button type="submit" class="btn btn-danger btn-block">Get Help</button>
                             </div>
                         </div>
                     </fieldset>
                 </form>
             </div>
+			<div class="text-center">
+				Created with <span class="fa fa-heart"></span> by Alex Persian and Steve Henningsgard
+			</div>
         </div>
     </div>
 </div>
