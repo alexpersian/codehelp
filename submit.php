@@ -80,6 +80,7 @@ if ( isset($_POST['email']) ) {
         $confEmail = array(
             'from_email' => 'nerd@codehelp.scsugroups.com',
             'from_name' => 'CodeHelp',
+            'subject' => 'CodeHelp: Request Confirmation',
             'to' => array(
                 array(
                     'email' => $email,
@@ -92,7 +93,12 @@ if ( isset($_POST['email']) ) {
             'track_opens' => true,
             'track_clicks' => true,
             'auto_text' => true,
-            'metadata' => array('website' => 'codehelp.scsugroups.com')
+            'metadata' => array(
+                'website' => 'codehelp.scsugroups.com',
+                'LIST:COMPANY' => 'CodeHelp',
+                'description' => 'You are receiving this email because you showed interest in our new company. Thank you!',
+                'list_address_html' => '905 Kilian Blvd. SE<br />Apt.3<br />St. Cloud, MN 56304'
+                )
         );
 
         $async = false;
