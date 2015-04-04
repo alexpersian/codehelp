@@ -1,114 +1,138 @@
 <?php
 
-    require( "config.php" );
+require( "config.php" );
 
-    $name = $email = $subject = $message = $error_text = $language = "";
-    $success = false;
+$name = $email = $subject = $message = $error_text = $language = "";
+$success = false;
 
-    //cleans a submitted form data field (basic security stuff)
-    function clean_input($data) {
-        $data = trim( $data );
-        $data = stripslashes( $data );
-        $data = htmlspecialchars( $data );
-        return $data;
-    }
+$headers = array();
+$body = array();
 
-    if ( isset($_POST['email']) ) {
+//cleans a submitted form data field (basic security stuff)
+function clean_input($data) {
+    $data = trim( $data );
+    $data = stripslashes( $data );
+    $data = htmlspecialchars( $data );
+    return $data;
+}
 
-        //get the (clean) inputs from the form
-        $name = clean_input( $_POST['name'] );
-        $email = clean_input( $_POST['email'] );
-        $subject = clean_input( $_POST['subject'] );
-        $message = clean_input( $_POST['message'] );
-        $language = clean_input( $_POST['language'] );
+if ( isset($_POST['email']) ) {
 
-        //construct the subject
-        $subject = "Help Request! (" . $subject . " in " . $language . ")";
+    //get the (clean) inputs from the form
+    $name = clean_input( $_POST['name'] );
+    $email = clean_input( $_POST['email'] );
+    $subject = clean_input( $_POST['subject'] );
+    $message = clean_input( $_POST['message'] );
+    $language = clean_input( $_POST['language'] );
 
-        //who's this email going to?
-        $to = "nerd@codehelp.scsugroups.com";
+    //construct the subject
+    $subject = "Help Request! (" . $subject . " in " . $language . ")";
 
-        //construct the headers
-        $headers = array();
-        $headers[] = "MIME-Version: 1.0";
-        $headers[] = "Content-type: text/html; charset=iso-8859-1";
-        $headers[] = "From:". $name . "<admin@codehelp.scsugroups.com>";
-        $headers[] = "Reply-To: " . $name . "<" . $email . ">";
-        $headers[] = "From: " . $email;
-        $headers[] = "Subject: " . $subject;
-        $headers[] = "X-Mailer: PHP/" . phpversion();
+    //who's this email going to?
+    $to = "nerd@codehelp.scsugroups.com";
 
-        //construct the body
-        $body = array();
-        $body[] = "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\">";
-        $body[] = "<tr><td width=\"80\">Class/Subject:</td><td width=\"280\">". $subject . "</td></tr>";
-        $body[] = "<tr><td width=\"80\">Language:</td><td width=\"280\">". $language . "</td></tr>";
-        $body[] = "<tr><td width=\"80\">Message:</td><td width=\"280\">". $message . "</td></tr>";
-        $body[] = "</tr></table>";
+    //construct the headers
+    $headers[] = "MIME-Version: 1.0";
+    $headers[] = "Content-type: text/html; charset=iso-8859-1";
+    $headers[] = "From:". $name . "<admin@codehelp.scsugroups.com>";
+    $headers[] = "Reply-To: " . $name . "<" . $email . ">";
+    $headers[] = "From: " . $email;
+    $headers[] = "Subject: " . $subject;
+    $headers[] = "X-Mailer: PHP/" . phpversion();
 
-        try {
-            $mandrill = new myMandrill();
+    //construct the body
+    $body[] = "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\">";
+    $body[] = "<tr><td width=\"80\">Class/Subject:</td><td width=\"280\">". $subject . "</td></tr>";
+    $body[] = "<tr><td width=\"80\">Language:</td><td width=\"280\">". $language . "</td></tr>";
+    $body[] = "<tr><td width=\"80\">Message:</td><td width=\"280\">". $message . "</td></tr>";
+    $body[] = "</tr></table>";
 
-            $mail = array(
-                'html' => implode("\r\n", $body),
-                'subject' => $subject,
-                'from_email' => 'admin@codehelp.scsugroups.com',
-                'from_name' => $name,
-                'to' => array(
-                    array(
-                        'email' => $to,
-                        'name' => $name,
-                        'type' => 'to'
-                    )
-                ),
-                'headers' => $headers,
-                'important' => true,
-                'track_opens' => true,
-                'track_clicks' => true,
-                'auto_text' => true,
+    try {
+        $mandrill = new myMandrill();
 
-            );
-            $async = false;
-            $result = $mandrill->messages->send($mail, $async);
+        $mail = array(
+            'html' => implode("\r\n", $body),
+            'subject' => $subject,
+            'from_email' => 'admin@codehelp.scsugroups.com',
+            'from_name' => $name,
+            'to' => array(
+                array(
+                    'email' => $to,
+                    'name' => $name,
+                    'type' => 'to'
+                )
+            ),
+            'headers' => $headers,
+            'important' => true,
+            'track_opens' => true,
+            'track_clicks' => true,
+            'auto_text' => true,
 
-            if ($result[0]['status'] == "sent") {
+        );
+        $async = false;
+        $result = $mandrill->messages->send($mail, $async);
 
-                $success = true;
+        if ($result[0]['status'] == "sent") {
 
-            } else {
-                $error_text = "Oops! Something went kinda wrong...";
+            $success = true;
 
-                mail(
-                    'nerd@codehelp.scsugroups.com',
-                    'MANDRILL FAILURE!',
-                    'status:' . $result[0]['status'] . ', reject_reason:' . $result[0]['reject_reason'],
-                    implode("\r\n", $headers)
-                );
-            }
-
-        } catch(Mandrill_Error $e) {
-
-            $error_text = "Oops! Something went wrong on our end...";
+        } else {
+            $error_text = "Oops! Something went kinda wrong...";
 
             mail(
                 'nerd@codehelp.scsugroups.com',
-                'MANDRILL ERROR!',
-                $e->getMessage(),
+                'MANDRILL FAILURE!',
+                'status:' . $result[0]['status'] . ', reject_reason:' . $result[0]['reject_reason'],
                 implode("\r\n", $headers)
             );
         }
 
-    } else {
+    } catch(Mandrill_Error $e) {
 
-        $error_text = "Oops! Something went wrong...";
+        $error_text = "Oops! Something went wrong on our end...";
 
         mail(
             'nerd@codehelp.scsugroups.com',
-            'FORM FAILURE!',
-            implode("\r\n", $_POST),
+            'MANDRILL ERROR!',
+            $e->getMessage(),
             implode("\r\n", $headers)
         );
     }
+
+} else {
+
+
+
+    $error_text = "Oops! Something went wrong...";
+
+    mail(
+        'nerd@codehelp.scsugroups.com',
+        'FORM FAILURE!',
+        implode("\r\n", $_POST),
+        "POST fail."
+    );
+
+    header("Location: index.php" );
+
+}
+
+$data = array();
+$data['name'] = $name;
+$data['email'] = $email;
+$data['subject'] = $subject;
+$data['message'] = $message;
+$data['language'] = $language;
+$data['success'] = $success;
+$data['error_text'] = $error_text;
+
+try {
+    $request = new Request($data);
+    $request->insert();
+} catch (PDOException $e) {
+    //ignore that
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
