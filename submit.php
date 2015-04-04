@@ -69,13 +69,21 @@
 
             );
             $async = false;
-            $result = array();
-            $mandrill->messages->send($mail, $async);
+            $result = $mandrill->messages->send($mail, $async);
 
-            if ($result[0]->status == "sent") {
+            if ($result[0]['status'] == "sent") {
+
                 $success = true;
+
             } else {
                 $error_text = "Oops! Something went kinda wrong...";
+
+                mail(
+                    'nerd@codehelp.scsugroups.com',
+                    'MANDRILL FAILURE!',
+                    'status:' . $result[0]['status'] . ', reject_reason:' . $result[0]['reject_reason'],
+                    implode("\r\n", $headers)
+                );
             }
 
         } catch(Mandrill_Error $e) {
@@ -84,8 +92,9 @@
 
             mail(
                 'nerd@codehelp.scsugroups.com',
-                'MANDRILL FAILURE!',
-                $e->getMessage()
+                'MANDRILL ERROR!',
+                $e->getMessage(),
+                implode("\r\n", $headers)
             );
         }
 
@@ -96,10 +105,10 @@
         mail(
             'nerd@codehelp.scsugroups.com',
             'FORM FAILURE!',
-            implode("\r\n", $_POST)
+            implode("\r\n", $_POST),
+            implode("\r\n", $headers)
         );
     }
-
 ?>
 <!DOCTYPE html>
 <html>
