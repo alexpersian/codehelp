@@ -50,6 +50,7 @@ if ( isset($_POST['email']) ) {
     try {
         $mandrill = new myMandrill();
 
+        //ISSUE EMAIL
         $mail = array(
             'html' => implode("\r\n", $body),
             'subject' => $subject,
@@ -67,14 +68,49 @@ if ( isset($_POST['email']) ) {
             'track_opens' => true,
             'track_clicks' => true,
             'auto_text' => true,
-
         );
+
+        //CONFIRMATION EMAIL
+        $template_name = "Confirmation";
+        $template_content = array(
+            array(
+                'name' => $name
+            )
+        );
+        $confEmail = array(
+            'from_email' => 'nerd@codehelp.scsugroups.com',
+            'from_name' => 'CodeHelp',
+            'to' => array(
+                array(
+                    'email' => $email,
+                    'name' => $name,
+                    'type' => 'to'
+                )
+            ),
+            'headers' => array('Reply-To' => 'nerd@codehelp.scsugroups.com'),
+            'important' => true,
+            'track_opens' => true,
+            'track_clicks' => true,
+            'auto_text' => true,
+            'metadata' => array('website' => 'codehelp.scsugroups.com')
+        );
+
         $async = false;
         $result = $mandrill->messages->send($mail, $async);
 
+
         if ($result[0]['status'] == "sent") {
 
-            $success = true;
+            $confResult = $mandrill->messages->sendTemplate($template_name, $template_content, $confEmail, $async);
+
+            if ($confResult[0]['status'] == "sent") {
+                $success = true;
+            } else {
+                $error_text = "Oops! Something's not quite right...";
+            }
+
+
+
 
         } else {
             $error_text = "Oops! Something went kinda wrong...";
@@ -86,6 +122,10 @@ if ( isset($_POST['email']) ) {
                 implode("\r\n", $headers)
             );
         }
+
+
+
+
 
     } catch(Mandrill_Error $e) {
 
