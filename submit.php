@@ -54,7 +54,7 @@ if ( isset($_POST['email']) ) {
         $mail = array(
             'html' => implode("\r\n", $body),
             'subject' => $subject,
-            'from_email' => 'admin@codehelp.scsugroups.com',
+            'from_email' => $email,
             'from_name' => $name,
             'to' => array(
                 array(
