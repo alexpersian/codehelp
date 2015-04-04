@@ -1,4 +1,7 @@
 <?php
+
+    require( "config.php" );
+
     $name = $email = $subject = $message = $error_text = $language = "";
 
     $success = false;
