@@ -37,16 +37,61 @@
         $body[] = "</tr></table>";
 
         //send the email!
+        /*
         $success = true;
         mail(
             $to,
             $subject,
             implode("\r\n", $body), //append line breaks
             implode("\r\n", $headers) //append line breaks
-        );
+        )
+        */
+
+        try {
+            $mandrill = new myMandrill();
+
+            $message = array(
+                'html' => implode("\r\n", $body),
+                'subject' => $subject,
+                'from_email' => 'admin@codehelp.scsugroups.com',
+                'from_name' => $name,
+                'to' => array(
+                    array(
+                        'email' => $email,
+                        'name' => $name,
+                        'type' => 'to'
+                    )
+                ),
+                'headers' => $headers,
+                'important' => true,
+                'track_opens' => true,
+                'track_clicks' => true,
+                'auto_text' => true,
+
+            );
+            $async = false;
+            $result = $mandrill->messages->send($message, $async);
+
+        } catch(Mandrill_Error $e) {
+
+            $error_text = "Oops! Something went wrong on our end...";
+
+            mail(
+                'nerd@codehelp.scsugroups.com',
+                'MANDRILL FAILURE!',
+                $e->getMessage()
+            );
+        }
 
     } else {
+
         $error_text = "Oops! Something went wrong...";
+
+        mail(
+            'nerd@codehelp.scsugroups.com',
+            'FORM FAILURE!',
+            implode("\r\n", $_POST)
+        );
     }
 
     //cleans a submitted form data field (basic security stuff)
