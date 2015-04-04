@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: shenningsgard
- * Date: 4/3/15
- * Time: 6:22 PM
- */
+
+require_once 'vendor/mandrill/mandrill/src/Mandrill.php';
 
 class myMandrill extends Mandrill
 {
-    private $apikey;
+    public $apikey;
 
     public function __construct($file = '../config.ini') {
         if (!$settings = parse_ini_file($file, TRUE)) {

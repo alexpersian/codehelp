@@ -1,4 +1,5 @@
 <script src="scripts/se.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         var content = $("#main-content");
@@ -17,7 +18,9 @@
 
             if (resp.items && resp.items.length > 0) {
 
-                answersFound = printResponse(resp);
+                if(printResponse(resp)) {
+                    appendSEMessage();
+                }
 
             } else {
                 //try without tags if no results
@@ -27,19 +30,21 @@
                 SE.get(config, function(resp) {
                     if (resp.items && resp.items.length > 0) {
 
-                        answersFound = printResponse(resp);
+                        if(printResponse(resp)) {
+                            appendSEMessage();
+                        }
+
                     } else {
                         //console.log("no answers found!");
                         //give up
                     }
                 });
             }
-
-            if (answersFound) {
-                content.after( $("<h3 class=\"col-md-10\">").html("While you're waiting, perhaps these resources might help?") );
-            }
-
         });
+
+        function appendSEMessage() {
+            content.after( $("<h3 class=\"col-md-10\">").html("While you're waiting, perhaps these resources might help?") );
+        }
 
         //prints the response as Bootstrap media objects, after the 'main-content' div
         function printResponse(resp) {

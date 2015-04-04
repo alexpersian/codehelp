@@ -3,8 +3,15 @@
     require( "config.php" );
 
     $name = $email = $subject = $message = $error_text = $language = "";
-
     $success = false;
+
+    //cleans a submitted form data field (basic security stuff)
+    function clean_input($data) {
+        $data = trim( $data );
+        $data = stripslashes( $data );
+        $data = htmlspecialchars( $data );
+        return $data;
+    }
 
     if ( isset($_POST['email']) ) {
 
@@ -16,7 +23,7 @@
         $language = clean_input( $_POST['language'] );
 
         //construct the subject
-        $subject = "Help Request! (" . $subject . "/" . $language . ")";
+        $subject = "Help Request! (" . $subject . " in " . $language . ")";
 
         //who's this email going to?
         $to = "nerd@codehelp.scsugroups.com";
@@ -39,28 +46,17 @@
         $body[] = "<tr><td width=\"80\">Message:</td><td width=\"280\">". $message . "</td></tr>";
         $body[] = "</tr></table>";
 
-        //send the email!
-        /*
-        $success = true;
-        mail(
-            $to,
-            $subject,
-            implode("\r\n", $body), //append line breaks
-            implode("\r\n", $headers) //append line breaks
-        )
-        */
-
         try {
             $mandrill = new myMandrill();
 
-            $message = array(
+            $mail = array(
                 'html' => implode("\r\n", $body),
                 'subject' => $subject,
                 'from_email' => 'admin@codehelp.scsugroups.com',
                 'from_name' => $name,
                 'to' => array(
                     array(
-                        'email' => $email,
+                        'email' => $to,
                         'name' => $name,
                         'type' => 'to'
                     )
@@ -73,7 +69,14 @@
 
             );
             $async = false;
-            $result = $mandrill->messages->send($message, $async);
+            $result = array();
+            $mandrill->messages->send($mail, $async);
+
+            if ($result[0]->status == "sent") {
+                $success = true;
+            } else {
+                $error_text = "Oops! Something went kinda wrong...";
+            }
 
         } catch(Mandrill_Error $e) {
 
@@ -95,14 +98,6 @@
             'FORM FAILURE!',
             implode("\r\n", $_POST)
         );
-    }
-
-    //cleans a submitted form data field (basic security stuff)
-    function clean_input($data) {
-        $data = trim( $data );
-        $data = stripslashes( $data );
-        $data = htmlspecialchars( $data );
-        return $data;
     }
 
 ?>
