@@ -1,6 +1,10 @@
 body {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
+    height: 100%;
+}
+html {
+    height: 100%;
 }
 .header {
     color: #2963AD;
@@ -18,13 +22,24 @@ body {
 .testimonial {
     font-style: italic;
 }
+.container {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -30px;
+}
 .footer {
-    position: relative;
-    bottom: 0;
     height: 30px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+}
+.push {
+    height: 30px;
 }
 .heart {
     color: #c10b12;
+}
+@media (max-width: 767px) {
+    .footer {
+        margin: 0 -20px 0 -20px;
+        padding: 0 20px 0 20px;
+    }
 }
