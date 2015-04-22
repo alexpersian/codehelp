@@ -1,0 +1,60 @@
+body {
+    font-family: "HelveticaNeue-Thin", "Helvetica Neue Thin", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    background: #418EA4;
+    color: white;
+    height: 100%;
+}
+html {
+    height: 100%;
+}
+.navbar {
+    background: #418EA4;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #fff !important;
+}
+.navbar-brand {
+    width: 201px;
+    height: 45px;
+    line-height: 50px;
+    padding: 3px;
+}
+.links {
+    font-size: 23px;
+    color: white !important;
+}
+.tutor {
+    margin: 5px auto;
+    border: 3px solid #fff;
+    border-radius: 10px;
+}
+.footer {
+    height: 30px;
+}
+.heart {
+    color: #c10b12;
+}
+.dev-link {
+    color: #91d6e3;
+}
+.container {
+    min-height: 92%;
+    margin: 0 auto -30px;
+}
+.push {
+    height: 30px;
+}
+.specialties {
+    margin: 10px auto;
+}
+@media (max-width: 767px) {
+    .footer {
+        margin: 0 -20px 0 -20px;
+        padding: 0 20px 0 20px;
+    }
+}
+.icon-bar {
+    background-color: #fff !important;
+}
